@@ -44,6 +44,7 @@ namespace MLWebAPI.Controllers
         {
             // Create movie in db logic
             _context.Movies.Add(value);
+            _context.SaveChanges();
             return Ok();
         }
 
@@ -52,6 +53,8 @@ namespace MLWebAPI.Controllers
         public IActionResult Put([FromBody] Movie movie)
         {
             // Update movie in db logic
+            _context.Movies.Update(movie);
+            _context.SaveChanges();
             return Ok();
         }
 
@@ -60,6 +63,9 @@ namespace MLWebAPI.Controllers
         public IActionResult Delete(int id)
         {
             // Delete movie from db logic
+            var selectedMovie = _context.Movies.FirstOrDefault(m=>m.MovieId==id);
+            _context.Movies.Remove(selectedMovie);
+            _context.SaveChanges();
             return Ok();
         }
     }
