@@ -1,0 +1,61 @@
+*
+{
+    box-sizing: border-box;
+}
+.center{
+    margin-left: auto;
+    margin-right:auto;
+    width:50%;
+    display:block;
+}
+.coverphoto{
+    margin-left: auto;
+    margin-right:auto;
+    width:100%;
+    height:50%;
+}
+header
+{
+color:ghostwhite;
+position: relative;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+font-family: Georgia, 'Times New Roman', Times, serif;
+background-color: lightsteelblue;
+}
+h1{
+    color:rgb(122, 14, 108);
+    position:relative;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+font-family: Georgia, 'Times New Roman', Times, serif;
+}
+img
+{
+height: 50%;
+width: 50%;
+align-items: center;
+}
+h5{
+    background-color:#c3909b;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+font-size: 100%;
+font-family: Georgia, 'Times New Roman', Times, serif;
+}
+body
+{
+background-color:#c3909b;
+align-items: center;
+justify-content: center;
+flex-direction: column;
+font-size: 100%;
+font-family: Georgia, 'Times New Roman', Times, serif;
+}
+p
+{
+background-color:lightblue;
+}
