@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace WebAPISample.Migrations
+namespace MLWebAPI.Migrations
 {
     public partial class Initial : Migration
     {

@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebAPISample.Data;
+using MLWebAPI.Data;
 
-namespace WebAPISample
+namespace MLWebAPI
 {
     public class Startup
     {

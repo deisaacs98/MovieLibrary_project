@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using WebAPISample.Models;
+using MLWebAPI.Models;
 
-namespace WebAPISample.Data
+namespace MLWebAPI.Data
 {
     public class ApplicationContext : DbContext
     {

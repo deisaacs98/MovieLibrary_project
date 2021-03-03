@@ -4,10 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebAPISample.Data;
-using WebAPISample.Models;
+using MLWebAPI.Data;
+using MLWebAPI.Models;
 
-namespace WebAPISample.Controllers
+
+namespace MLWebAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -23,7 +24,8 @@ namespace WebAPISample.Controllers
         public IActionResult Get()
         {
             // Retrieve all movies from db logic
-            return Ok(new string[] { "movie1 string", "movie2 string" });
+            var movies = string.Join(",",_context.Movies.Select(m=>m.ToString()).ToArray());
+            return Ok(movies);
         }
 
         // GET api/movie/5
@@ -32,7 +34,8 @@ namespace WebAPISample.Controllers
         {
             // Retrieve movie by id from db logic
             // return Ok(movie);
-            return Ok();
+            var movie = _context.Movies.Where(m => m.MovieId == id);
+            return Ok(movie);
         }
 
         // POST api/movie
@@ -40,6 +43,7 @@ namespace WebAPISample.Controllers
         public IActionResult Post([FromBody]Movie value)
         {
             // Create movie in db logic
+            _context.Movies.Add(value);
             return Ok();
         }
 
