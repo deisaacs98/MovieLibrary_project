@@ -1,3 +1,16 @@
+$(function(){
+    $.get("https://localhost:44325/api/movie", function(data){
+        console.log(data);
+        data.map(function(el){
+            $("#tableData").append(`<tr>
+            <td style="color:red">${el.title}</td>
+            <td>${el.director}</td>
+            <td>${el.genre}</td>
+            </tr>`);
+        })
+    });
+})
+
 (function($){
     function processForm( e ){
         var dict = {
@@ -26,33 +39,7 @@
     $('#my-form').submit( processForm );
 })(jQuery);
 
-(function($){
-    function processGetMovies( e ){
-        var dict = {
-        	Title : this["title"].value,
-        	Director: this["director"].value,
-            Genre: this["genre"].value
-        };
 
-        $.ajax({
-            url: 'https://localhost:44325/api/movie',
-            dataType: 'json',
-            type: 'get',
-            contentType: 'application/json',
-            data: JSON.stringify(dict),
-            success: function( data, textStatus, jQxhr ){
-                $('#response pre').html( data );
-            },
-            error: function( jqXhr, textStatus, errorThrown ){
-                console.log( errorThrown );
-            }
-        });
-
-        e.preventDefault();
-    }
-
-    $('#get-movies').submit( processGetMovies );
-})(jQuery);
 //This needs to be changed so that it differs from the function above.
 //It should perform the Get(int id) request, so we need to find the id
 //based on the given information. Otherwise, we 

@@ -24,7 +24,7 @@ namespace MLWebAPI.Controllers
         public IActionResult Get()
         {
             // Retrieve all movies from db logic
-            var movies = string.Join(",",_context.Movies.Select(m=>m.ToString()).ToArray());
+            var movies = _context.Movies;
             return Ok(movies);
         }
 
