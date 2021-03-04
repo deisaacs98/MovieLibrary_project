@@ -9,9 +9,6 @@ $(function(){
             </tr>`);
         })
     });
-})
-
-(function($){
     function processForm( e ){
         var dict = {
         	Title : this["title"].value,
@@ -25,25 +22,22 @@ $(function(){
             type: 'post',
             contentType: 'application/json',
             data: JSON.stringify(dict),
-            success: function( data, textStatus, jQxhr ){
+            success: function( data ){
                 $('#response pre').html( data );
             },
-            error: function( jqXhr, textStatus, errorThrown ){
+            error: function( errorThrown ){
                 console.log( errorThrown );
             }
         });
-
         e.preventDefault();
     }
 
     $('#my-form').submit( processForm );
-})(jQuery);
-
 
 //This needs to be changed so that it differs from the function above.
 //It should perform the Get(int id) request, so we need to find the id
-//based on the given information. Otherwise, we 
-(function($){
+//based on the given information.
+
     function processGetMovie( e ){
         
         var dict = {
@@ -70,9 +64,7 @@ $(function(){
     }
 
     $('#get-movie').submit( processGetMovie );
-})(jQuery);
 
-(function($){
     function updateMovie( e ){
         var dict = {
         	Title : this["title"].value,
@@ -98,9 +90,7 @@ $(function(){
     }
 
     $('#update-movie').submit( updateMovie );
-})(jQuery);
 
-(function($){
     function deleteMovie( e ){
         var dict = {
         	Title : this["title"].value,
@@ -126,7 +116,8 @@ $(function(){
     }
 
     $('#delete-movie').submit( deleteMovie );
-})(jQuery);
+})
+
 
 
 
