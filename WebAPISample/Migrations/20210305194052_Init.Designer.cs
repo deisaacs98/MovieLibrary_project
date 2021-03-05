@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MLWebAPI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20210304180711_Init")]
+    [Migration("20210305194052_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,9 @@ namespace MLWebAPI.Migrations
                     b.Property<string>("Genre")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -46,6 +49,7 @@ namespace MLWebAPI.Migrations
                             MovieId = 1,
                             Director = "Martin Scorsese",
                             Genre = "Drama",
+                            Image = "images/Departed.jpg",
                             Title = "The Departed"
                         },
                         new
@@ -53,6 +57,7 @@ namespace MLWebAPI.Migrations
                             MovieId = 2,
                             Director = "Christopher Nolan",
                             Genre = "Drama",
+                            Image = "images/DarkKnight.jpg",
                             Title = "The Dark Knight"
                         },
                         new
@@ -60,6 +65,7 @@ namespace MLWebAPI.Migrations
                             MovieId = 3,
                             Director = "Christopher Nolan",
                             Genre = "Drama",
+                            Image = "images/Inception.jpg",
                             Title = "Inception"
                         });
                 });

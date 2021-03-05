@@ -34,6 +34,9 @@ function GenerateUpdateForm(id){
                 <td style="color:red">${el.title}</td>
                 <td>${el.director}</td>
                 <td>${el.genre}</td>
+                <td>
+                    <img src=${el.image} width = "300" alt="Image for"+${el.title}>
+                </td>
                 </tr>
                 <tr>
                     <td>Update Movie: </td>
