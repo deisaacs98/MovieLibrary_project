@@ -4,7 +4,8 @@ function UpdateMovie( e ){
         MovieId : parseInt(this["movieId"].value),
         Title : this["title"].value,
         Director: this["director"].value,
-        Genre: this["genre"].value
+        Genre: this["genre"].value,
+        Image: this["image"].value
     };
 
     $.ajax({
@@ -35,21 +36,30 @@ function GenerateUpdateForm(id){
                 <td>${el.director}</td>
                 <td>${el.genre}</td>
                 <td>
-                    <img src=${el.image} width = "300" alt="Image for"+${el.title}>
+                    <img src=${el.image} width = "300" alt="Image for ${el.title}">
                 </td>
                 </tr>
                 <tr>
-                    <td>Update Movie: </td>
-                    <td></td>
-                    <td>
-                        <form id="update-movie" class="nav justify-content-center">
-                            <input type="hidden" id="movieId" value="${el.movieId}" />
+                    <form id="update-movie" class="nav justify-content-center">
+                        <input type="hidden" id="movieId" value="${el.movieId}" />
+                        <td>
+                            <label for="title">Movie Title:   </label>
                             <input type="text" name="title" placeholder="${el.title}" />
+                        </td>
+                        <td>
+                            <label for="director">Director:   </label>
                             <input type="text" name="director" placeholder="${el.director}" />
+                        </td>
+                        <td>
+                            <label for="genre">Genre:   </label>
                             <input type="text" name="genre" placeholder="${el.genre}"/>
-                            <button type="submit">Submit</button>
-                        </form>
-                    </td>
+                        </td>
+                        <td>
+                            <label for="img">Enter the URL for the movie image: </label>
+                            <input type="text" id="img" name="image" placeholder=${el.image}>
+                        </td>
+                        <button type="submit">Submit</button>
+                    </form>
                 </tr>
                 `);
                 $('#update-movie').submit( UpdateMovie );
