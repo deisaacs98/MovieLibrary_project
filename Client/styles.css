@@ -15,3 +15,7 @@
     background: url("images/cinemaseats.jpg");
     background-size: cover;
   }
+
+table {
+    font-size: medium;
+  }

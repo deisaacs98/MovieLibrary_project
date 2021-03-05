@@ -24,39 +24,42 @@ function UpdateMovie( e ){
 
     e.preventDefault();
 }
-function GenerateUpdateForm(id){
+function GenerateUpdateForm(id,title,director,genre){
     
     $.get("https://localhost:44325/api/movie", id, function(data){
         console.log(data);
         
         data.filter(function(el){
-            if(el.movieId==id){
+            if(el.movieId==id||el.title==title||el.director==director||el.genre==genre){
                 $("#tableData").html(`<tr>
+                <td>
+                    <img src=${el.image} width = "100%" alt="Image for ${el.title}">
+                </td>
                 <td style="color:red">${el.title}</td>
                 <td>${el.director}</td>
                 <td>${el.genre}</td>
-                <td>
-                    <img src=${el.image} width = "300" alt="Image for ${el.title}">
-                </td>
+                </tr>
+                <tr>
+                    <td colspan="12">To edit this movie, enter the information below: </td>
                 </tr>
                 <tr>
                     <form id="update-movie" class="nav justify-content-center">
                         <input type="hidden" id="movieId" value="${el.movieId}" />
                         <td>
-                            <label for="title">Movie Title:   </label>
+                            <label for="img">Image URL:</label>
+                            <input type="text" id="img" name="image" placeholder=${el.image}>
+                        </td>
+                        <td>
+                            <label for="title">Movie Title:</label>
                             <input type="text" name="title" placeholder="${el.title}" />
                         </td>
                         <td>
-                            <label for="director">Director:   </label>
+                            <label for="director">Director: </label>
                             <input type="text" name="director" placeholder="${el.director}" />
                         </td>
                         <td>
-                            <label for="genre">Genre:   </label>
+                            <label for="genre">Genre:</label>
                             <input type="text" name="genre" placeholder="${el.genre}"/>
-                        </td>
-                        <td>
-                            <label for="img">Enter the URL for the movie image: </label>
-                            <input type="text" id="img" name="image" placeholder=${el.image}>
                         </td>
                         <button type="submit">Submit</button>
                     </form>
@@ -84,7 +87,10 @@ $(function(){
         console.log(data);
         data.map(function(el){
             $("#tableData").append(`<tr>
-            <td style="color:red">${el.title}</td>
+            <td>
+                <img src=${el.image} width = "100%" alt="Image for ${el.title}">
+            </td>
+            <td>${el.title}</td>
             <td>${el.director}</td>
             <td>${el.genre}</td>
             <td>
