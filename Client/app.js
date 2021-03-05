@@ -1,13 +1,26 @@
-function GenerateUpdateform(id){
+function GenerateUpdateForm(id){
     $.get("https://localhost:44325/api/movie", id, function(data){
         console.log(data);
         data.filter(function(el){
             if(el.movieId==id){
-                $("#tableData").append(`<tr>
+                $("#tableData").html(`<tr>
                 <td style="color:red">${el.title}</td>
                 <td>${el.director}</td>
                 <td>${el.genre}</td>
-                </tr>`);
+                </tr>
+                <tr>
+                    <td>Update Move: </td>
+                    <td></td>
+                    <td>
+                        <form id="UpdateMovie" class="nav justify-content-center">
+                            <input type="text" name="title" placeholder="${el.title}" />
+                            <input type="text" name="director" placeholder="${el.director}" />
+                            <input type="text" name="genre" placeholder="${el.genre}"/>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </td>
+                </tr>
+                `);
             }
             else{
                 return false;
@@ -15,6 +28,29 @@ function GenerateUpdateform(id){
             
         })
     })   
+}
+function UpdateMovie( e ){
+    var dict = {
+        Title : this["title"].value,
+        Director: this["director"].value,
+        Genre: this["genre"].value
+    };
+
+    $.ajax({
+        url: 'https://localhost:44325/api/movie',
+        dataType: 'json',
+        type: 'put',
+        contentType: 'application/json',
+        data: JSON.stringify(dict),
+        success: function( data){
+            $('#response pre').html( data );
+        },
+        error: function(errorThrown ){
+            console.log( errorThrown );
+        }
+    });
+
+    e.preventDefault();
 }
 
 $(function(){
@@ -26,14 +62,15 @@ $(function(){
             <td>${el.director}</td>
             <td>${el.genre}</td>
             <td>
-                <button onclick="GenerateUpdateform(${el.movieId})">Select Movie</button>
+                <button onclick="GenerateUpdateForm(${el.movieId})">Select Movie</button>
             </td>
             </tr>`);
         })
     });
     
-    //Function above retrieves movies from the database.
-    //The function below adds a movie to database.
+
+
+
     function processForm( e ){
         var dict = {
         	Title : this["title"].value,
@@ -65,59 +102,12 @@ $(function(){
     //The update function will process a put request. Since
     //this works similarly to the post request, we can use a
     //similar approach.
-    function updateMovie( e ){
-        var dict = {
-        	Title : this["title"].value,
-        	Director: this["director"].value,
-            Genre: this["genre"].value
-        };
+    
 
-        $.ajax({
-            url: 'https://localhost:44325/api/movie',
-            dataType: 'json',
-            type: 'put',
-            contentType: 'application/json',
-            data: JSON.stringify(dict),
-            success: function( data, textStatus, jQxhr ){
-                $('#response pre').html( data );
-            },
-            error: function( jqXhr, textStatus, errorThrown ){
-                console.log( errorThrown );
-            }
-        });
-
-        e.preventDefault();
-    }
-
-    $('#update-movie').submit( updateMovie );
-
-    //The delete function should resemble the check by id function.
-    function deleteMovie( e ){
-        var dict = {
-        	Title : this["title"].value,
-        	Director: this["director"].value,
-            Genre: this["genre"].value
-        };
-
-        $.ajax({
-            url: 'https://localhost:44325/api/movie',
-            dataType: 'json',
-            type: 'delete',
-            contentType: 'application/json',
-            data: JSON.stringify(dict),
-            success: function( data, textStatus, jQxhr ){
-                $('#response pre').html( data );
-            },
-            error: function( jqXhr, textStatus, errorThrown ){
-                console.log( errorThrown );
-            }
-        });
-
-        e.preventDefault();
-    }
-
-    $('#delete-movie').submit( deleteMovie );
+    
+    
 })
+
 
 
 
