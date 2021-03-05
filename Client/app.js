@@ -1,36 +1,7 @@
-function GenerateUpdateForm(id){
-    $.get("https://localhost:44325/api/movie", id, function(data){
-        console.log(data);
-        data.filter(function(el){
-            if(el.movieId==id){
-                $("#tableData").html(`<tr>
-                <td style="color:red">${el.title}</td>
-                <td>${el.director}</td>
-                <td>${el.genre}</td>
-                </tr>
-                <tr>
-                    <td>Update Move: </td>
-                    <td></td>
-                    <td>
-                        <form id="UpdateMovie" class="nav justify-content-center">
-                            <input type="text" name="title" placeholder="${el.title}" />
-                            <input type="text" name="director" placeholder="${el.director}" />
-                            <input type="text" name="genre" placeholder="${el.genre}"/>
-                            <button type="submit">Submit</button>
-                        </form>
-                    </td>
-                </tr>
-                `);
-            }
-            else{
-                return false;
-            }
-            
-        })
-    })   
-}
+
 function UpdateMovie( e ){
     var dict = {
+        MovieId : parseInt(this["movieId"].value),
         Title : this["title"].value,
         Director: this["director"].value,
         Genre: this["genre"].value
@@ -52,6 +23,48 @@ function UpdateMovie( e ){
 
     e.preventDefault();
 }
+function GenerateUpdateForm(id){
+    
+    $.get("https://localhost:44325/api/movie", id, function(data){
+        console.log(data);
+        
+        data.filter(function(el){
+            if(el.movieId==id){
+                $("#tableData").html(`<tr>
+                <td style="color:red">${el.title}</td>
+                <td>${el.director}</td>
+                <td>${el.genre}</td>
+                </tr>
+                <tr>
+                    <td>Update Movie: </td>
+                    <td></td>
+                    <td>
+                        <form id="update-movie" class="nav justify-content-center">
+                            <input type="hidden" id="movieId" value="${el.movieId}" />
+                            <input type="text" name="title" placeholder="${el.title}" />
+                            <input type="text" name="director" placeholder="${el.director}" />
+                            <input type="text" name="genre" placeholder="${el.genre}"/>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </td>
+                </tr>
+                `);
+                $('#update-movie').submit( UpdateMovie );
+                
+            }
+            else{
+                return false;
+            }
+            
+        });
+        
+        
+    });
+    
+       
+}
+
+
 
 $(function(){
     $.get("https://localhost:44325/api/movie", function(data){
@@ -95,6 +108,9 @@ $(function(){
     }
 
     $('#my-form').submit( processForm );
+
+
+
 
 
 
