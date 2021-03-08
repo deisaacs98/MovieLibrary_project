@@ -2,47 +2,57 @@
 <html>
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> 
-    <title>jQuery AJAX POST Form</title>
+    <title>Movie Library</title>
     <meta charset="utf-8">
-    
-    <link rel="stylesheet" type="text/css" href="styles.css">
     <link rel="stylesheet" type="text/css" href="bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand text-danger" href="#">Movie Library</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav">
+            <li class="nav-item active text-danger">
+                <a class="nav-link" href="#search-form1">Search for a movie</a>
+            </li>
+            <li class="nav-item active text-danger">
+                <a class="nav-link" href="#my-form">Add a movie</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <main>
     <div class="header-img"></div>
 </main>
 
-
-
-<header>
-    
-    <h1 class="nav justify-content-center red-content">
-        Movie Library</h1>
-        
-</header>
-<body color>
+<body>
 
 <div id="response">
     <pre></pre>
 </div>
-<div id="SingleMovie"></div>
-<div id="#ListofMovies"></div>
 
-<table class="table justify-content-center">
+
+
+
+<table class="table">
     <thead>
         <tr>
-            <th class="col-3"></th>
-            <th class="col-3">
+            <th>View Movies</th>
+            <th>
                 Title
             </th>
-            <th class="col-3">
+            <th>
                 Director
             </th>
             <th>
                 Genre
-            </th class="col-3">
-            <th class="col-3"></th>
+            </th>
+            <th></th>
         </tr>
     </thead>
     <tbody id="tableData">
@@ -51,6 +61,22 @@
 </table>
 
 
+
+
+<p class="nav justify-content-center">Search by title, director, or genre: </p>
+
+<form id="search-form1" class="nav justify-content-center">
+    <input type="text" id="title" placeholder="Title" />
+    <button type="submit">Search</button>
+</form>
+<form id="search-form2" class="nav justify-content-center">
+    <input type="text" id="director" placeholder="Director" />
+    <button type="submit">Search</button>
+</form>
+<form id="search-form3" class="nav justify-content-center">
+    <input type="text" id="genre" placeholder="Genre"/>
+    <button type="submit">Search</button>
+</form>
 
 
 
@@ -64,7 +90,6 @@
     <input type="text" id="img" name="image" placeholder="images/Image.jpg">
     <button type="submit">Submit</button>
 </form>
-
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

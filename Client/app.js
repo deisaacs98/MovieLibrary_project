@@ -24,6 +24,7 @@ function UpdateMovie( e ){
 
     e.preventDefault();
 }
+
 function GenerateUpdateForm(id,title,director,genre){
     
     $.get("https://localhost:44325/api/movie", id, function(data){
@@ -35,12 +36,12 @@ function GenerateUpdateForm(id,title,director,genre){
                 <td>
                     <img src=${el.image} width = "100%" alt="Image for ${el.title}">
                 </td>
-                <td style="color:red">${el.title}</td>
+                <td>${el.title}</td>
                 <td>${el.director}</td>
                 <td>${el.genre}</td>
                 </tr>
                 <tr>
-                    <td colspan="12">To edit this movie, enter the information below: </td>
+                    <td colspan="5">To edit this movie, enter the information below: </td>
                 </tr>
                 <tr>
                     <form id="update-movie" class="nav justify-content-center">
@@ -65,30 +66,21 @@ function GenerateUpdateForm(id,title,director,genre){
                     </form>
                 </tr>
                 `);
-                $('#update-movie').submit( UpdateMovie );
-                
+                $('#update-movie').submit( UpdateMovie );   
             }
             else{
                 return false;
-            }
-            
-        });
-        
-        
-    });
-    
-       
+            } 
+        }); 
+    });    
 }
-
-
-
 $(function(){
     $.get("https://localhost:44325/api/movie", function(data){
         console.log(data);
         data.map(function(el){
             $("#tableData").append(`<tr>
             <td>
-                <img src=${el.image} width = "100%" alt="Image for ${el.title}">
+                <img src=${el.image} width=50% alt="Image for ${el.title}">
             </td>
             <td>${el.title}</td>
             <td>${el.director}</td>
@@ -99,11 +91,7 @@ $(function(){
             </tr>`);
         })
     });
-    
-
-
-
-    function processForm( e ){
+    function addMovieForm( e ){
         var dict = {
         	Title : this["title"].value,
         	Director: this["director"].value,
@@ -126,18 +114,36 @@ $(function(){
         e.preventDefault();
     }
 
-    $('#my-form').submit( processForm );
-
-
-
-
-
-
-
-    //The update function will process a put request. Since
-    //this works similarly to the post request, we can use a
-    //similar approach.
     
+    $('#my-form').submit( addMovieForm );
+    
+    function searchTitle( e ){
+        if(this["title"].value!=null){
+            var title = this["title"].value;
+            GenerateUpdateForm(null,title);
+        }
+        
+        e.preventDefault();
+    };
+
+    function searchDirector(e){
+        if(this["director"].value!=null){
+            var director = this["director"].value;
+            GenerateUpdateForm(null, null, director);
+        }
+        e.preventDefault();
+    }
+    function searchGenre(e){
+        if(this["genre"].value!=null){
+            var director = this["genre"].value;
+            GenerateUpdateForm(null, null, null, director);
+        }
+        e.preventDefault();
+    }
+
+    $('#search-form1').submit(searchTitle);
+    $('#search-form2').submit(searchDirector);
+    $('#search-form3').submit(searchGenre);
 
     
     
